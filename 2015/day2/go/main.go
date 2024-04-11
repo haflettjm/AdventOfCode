@@ -58,9 +58,17 @@ func iterateOverData(data []string) {
 	var sum int
 	for _, line := range data {
 		dimensions := cleanDimensions(line)
-		area := calcArea(dimensions[0], dimensions[1])
-		fmt.Println(area)
-		sum += area
+		x := dimensions[0]
+		y := dimensions[1]
+		z := dimensions[2]
+		side1 := calcArea(x, y)
+		side2 := calcArea(y, z)
+		side3 := calcArea(x, z)
+		lowest := findLowest(side1, side2, side3) / 2
+		fmt.Printf("Dimensions are: %v, %v, %v \nThe lowest side is: %v\n", side1, side2, side3, lowest)
+		areaNeeded := side1 + side2 + side3 + lowest
+		fmt.Println(areaNeeded)
+		sum += areaNeeded
 	}
 	fmt.Println(sum)
 }
