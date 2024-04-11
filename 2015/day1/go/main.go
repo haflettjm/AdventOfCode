@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func readInputFile(path string) []string {
@@ -21,16 +22,25 @@ func readInputFile(path string) []string {
 	}
 
 	readFile.Close()
+	directions := strings.Split(fileLines[0], "")
+	return directions
+}
 
-	for _, line := range fileLines {
-		fmt.Println(line)
+func floorFinder(directions []string) int {
+	count := 0
+	for _, floor := range directions {
+		if floor == "(" {
+			count++
+		} else {
+			count--
+		}
 	}
-
-	return fileLines
+	return count
 }
 
 func main() {
 	filePath := "../input/input.txt"
-	fmt.Println(readInputFile(filePath))
-
+	file := readInputFile(filePath)
+	count := floorFinder(file)
+	fmt.Println(count)
 }
