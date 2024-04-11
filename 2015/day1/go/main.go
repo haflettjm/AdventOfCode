@@ -6,10 +6,9 @@ import (
 	"os"
 )
 
-func readInputFile(path string)string{
-	scanner := bufio.NewScanner(r Reader)
+func readInputFile(path string) []string {
 	readFile, err := os.Open(path)
-	if err != nil{
+	if err != nil {
 		fmt.Println(err)
 	}
 	fileScanner := bufio.NewScanner(readFile)
@@ -23,17 +22,15 @@ func readInputFile(path string)string{
 
 	readFile.Close()
 
-	for _, line := range fileLines{
+	for _, line := range fileLines {
 		fmt.Println(line)
 	}
 
-	fmt.Println(fileLines)
+	return fileLines
 }
 
 func main() {
 	filePath := "../input/input.txt"
-	floor := 0
-	fmt.Println(floor)
-
+	fmt.Println(readInputFile(filePath))
 
 }
